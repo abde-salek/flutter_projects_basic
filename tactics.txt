@@ -1,0 +1,14 @@
+// text widget is a child when it's inside a botton
+
+mainAxis is the order of the widgets in a row horizontally ------ 
+                                        a Column vertically  |
+
+CrossAxis is the order of the widgets in a row vertically          |
+                                         a Column horizontally!! ------
+
+def:  property used in Flutter to control the alignment of children 
+        along the main axis of a layout, such as in a Row or Column
+
+are a property used in Row/Column widget's body;
+
+//inside a Row/ Column there is children no Child

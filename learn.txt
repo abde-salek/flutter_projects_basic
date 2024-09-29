@@ -1,0 +1,148 @@
+functionS are lowercase; classes are Uppercase:
+
+//@override( it extra but good
+it means that this method (build) is overriding
+a method from its parent class (StatelessWidget)
+
+//MaterialApp VS Cupertino
+1st one is for common use: properties that matches both AND/iOS
+2nd is for specific use where the code is made for only one of them at time
+
+//return MaterialApp(
+MaterialApp: is a widget that wraps your entire app 
+and provides essential configurations
+and structure for using Material Design 
+which serves as the rooting
+(navigation between pages ans Screens)
+and theming(color, fonts.. management)
+
+//home: Scaffold(
+specifies the widget that represents the default page 
+Scaffold provides the basic layout structure 
+of the screen;(where we can add AppBar, body, floating botton)
+
+// body: Center(
+    to align its child widget in the center
+    of the screen.
+
+// child: Container(
+    Container widget is used to create 
+    a rectangular box. that can have 
+multiple properties(height, width, color)
+
+//
+return MaterialApp(   //This creates an instance of the MaterialApp class.
+  home: Scaffold(     //of the parameters of the 'MaterialApp' constructor; 
+                      //the widget displayed as the home screen in this case is "Scaffold"
+    body: Center(
+      child: Text('Hello World'),
+    ),
+  ),
+);
+
+A-  layout widgets: [LW]
+(Column)    is a layout widget in Flutter that arranges           X
+            its children vertically (one on top of the other)     Y
+            To stack multiple widgets vertically in the app.      Z
+
+Row:)   Arranges its children horizontally (side by side).      X Y Z 
+Stack:) Overlaps its children, positioning them on top of each other.
+
+B- child/ children: [C]
+are a property of a LW WHERE we can make a list of widgets that LW will arrange.
+    if one child we write child: ... ; 
+    if 2 or more: children [code]
+
+// onPressed: () {}, 
+  this is the function that's responsible for 
+  Giving user access to press it, where we can
+  add a bunch of code in it later on..
+
+
+--PUBSPEC.YAML 
+    IS a configuration file for our project where we can
+    add envr, dependencies..
+
+//TEXT:
+    centerTitle: true, | centers the parameter(bar/title/..)
+    
+
+
+//Fonts style: in the text child
+    after adding them in the familly on fronts 
+    whithin the PUBSPEC file 
+    we call them by fontfamilly: 'fam_name',
+
+//Image adding as the body's child: (child: Image(..)),
+    -using live url:
+        Image: NetworkImage('url'),
+    -using local image:
+        add image on assets file in project
+        add the image name to assets on PUBSPEC file
+        then use: image: AssetsImage('assets/pic_name.png'),
+     
+     if pictures on assets local folder are a lot then
+     we generally type assets:
+       //file name        -asset/    and we can access 
+     all images whithin that file
+        using child: Image.asset('assets/pic_name.png'),
+
+// ICON:
+as a child it simply adds an icon on the screen child: Icon(...)
+Icon.airplane, we have a lot of pre-installed icons          |
+size: / color:/ .... it has multiple properties that wecanuse| upHERE
+
+[//PADDING:
+  The padding adds a 16px space inside the container(properties:top, bottom, left, right), 
+  between the boundary(container's outer edges) and the child( is the content) !!
+in a padding widget use only use the padding parameter and maybe a child but no margin allowed/
+
+//MARGIN:
+  adds space outside a widget, 
+  creating space between the widget and other widgets 
+}]
+      EdgeInsets.all(double value):: his applies the same padding or margin on all four sides
+      EdgeInsets.symmetric({double vertical, double horizontal})=={(top/bottom) , (left/right)} properties
+      EdgeInsets.only({double left, double top, double right, double bottom}) specify for each
+        exp: (left: 20.0, top: 10.0, right: 30.0, bottom: 5.0),
+
+      EdgeInsets.fromLTRB(double left, double top, double right, double bottom)
+        exp: (10.0, 20.0, 30.0, 40.0), respecting the order!!
+
+//body: suuuuuuuuuuu
+ 
+1.Center::  Centers a single child both horizontally and vertically
+ 2. Align:: Aligns a single child based on specific alignment coordinates (top-left, bottom-right, center,..).
+   3. Row:: Lays out its children horizontally in a single row. You can control how the children are spaced 
+            using properties like `mainAxisAlignment` and `crossAxisAlignment`.
+      4. Column:: Lays out its children vertically in a single column. Like `Row`, it also supports alignment
+        5.Container:: A versatile widget that can contain a single child and provides properties for 
+                      padding, margin, alignment, background color, borders, etc.
+            6.Stack:: Stacks its children on top of each other, allowing for overlays or complex layouts with absolute positioning.
+              25.Scrollable:: A low-level widget that allows its child to be scrollable in a specific direction.
+
+                  26.Scaffold:: Provides a basic structure for the visual layout of the app 
+                  (with app bar, body, floating action button, etc.). It is often the root widget of a screen in an app.
+
+
+// Expended:
+    -When you wrap a widget with Expanded, 
+       it will take up as much space as possible along the main axis 
+       (horizontal in Row, vertical in Column).
+    -Flex Property: Expanded has a flex property which determines how much space a widget should occupy relative to other Expanded widgets. 
+      The default flex value is 1, meaning all 
+      Expanded widgets with the same flex value will take equal space.
+    We can use flex=number inside them; default number flex=1
+
+//elevation: double
+//letterSpacing: double
+//frontSize: double
+//frontWeight: FrontWeight.String
+//SizedBox(property:double)  which makes a transparent box respecting the order,
+            height/width
+
+//floatingActionButton
+action Button that floats on the screen
+
+//STRESSFUL W
+setState((){code}) allows a state change overtime; we can use it inside the onPressed(){..}..
