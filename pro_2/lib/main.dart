@@ -13,8 +13,8 @@ class MyApp extends StatefulWidget {
   State<MyApp> createState() => _MyAppState();
 }
 
-// List<String> tasks = ["Task 1", "Task 2", "Task 3", "Task 4", "Task 5", "Task 6", "Task 7"];
 List<String> tasks = [];
+
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
   @override
@@ -34,8 +34,55 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.amber[600],
           elevation: 10,
         ),
-        body: Center(
-          child: Text('Your task list will be displayed here'),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Container(
+                    //color: Colors.yellowAccent[400],
+                    padding: const EdgeInsets.all(12.0),
+                    margin: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.yellow[500],
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                    ),
+                    child: Align(
+                      alignment: Alignment.topLeft,
+                      child: Text(
+                    "Task1",
+                      style: TextStyle(
+                        fontWeight:FontWeight.bold,
+                        fontSize: 24, // Font size
+                  ),
+                      ),
+                  ),)
+              ],
+            ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.all(12.0),
+                    margin: const EdgeInsets.all(8),
+                    decoration: BoxDecoration(
+                      color: Colors.yellow[500],
+                      borderRadius: BorderRadius.all(Radius.circular(7)),
+                    ),
+                    child: Text(
+                    "Task2, Upgrade",
+                      style: TextStyle(
+                        fontWeight:FontWeight.bold,
+                        fontSize: 24, // Font size
+                  ),
+                      ),
+                  ),
+                ],
+              ),
+            
+            //Container(),
+          ],
         ),
         
 
