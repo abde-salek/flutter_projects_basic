@@ -34,13 +34,11 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.amber[600],
           elevation: 10,
         ),
-        body: Column(
+        body: Column (
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                Container(
+                Expanded(
+                  child: Container(
                     //color: Colors.yellowAccent[400],
                     padding: const EdgeInsets.all(12.0),
                     margin: const EdgeInsets.all(8),
@@ -48,8 +46,6 @@ class _MyAppState extends State<MyApp> {
                       color: Colors.yellow[500],
                       borderRadius: BorderRadius.all(Radius.circular(7)),
                     ),
-                    child: Align(
-                      alignment: Alignment.topLeft,
                       child: Text(
                     "Task1",
                       style: TextStyle(
@@ -57,32 +53,25 @@ class _MyAppState extends State<MyApp> {
                         fontSize: 24, // Font size
                   ),
                       ),
-                  ),)
-              ],
-            ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
+                  ),),
+                Expanded(
+                  child: Container(
+                    //color: Colors.yellowAccent[400],
                     padding: const EdgeInsets.all(12.0),
                     margin: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
                       color: Colors.yellow[500],
                       borderRadius: BorderRadius.all(Radius.circular(7)),
                     ),
-                    child: Text(
-                    "Task2, Upgrade",
+                      child: Text(
+                    "Task in the bottom of the task list",
                       style: TextStyle(
                         fontWeight:FontWeight.bold,
                         fontSize: 24, // Font size
                   ),
                       ),
-                  ),
-                ],
-              ),
-            
-            //Container(),
-          ],
+                  ),),
+              ],
         ),
         
 
