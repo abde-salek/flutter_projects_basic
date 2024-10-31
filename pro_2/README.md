@@ -1,6 +1,6 @@
 # pro_2
 
-A new Flutter project.
+Basic TO DO app Widget
 
 ## Getting Started
 
