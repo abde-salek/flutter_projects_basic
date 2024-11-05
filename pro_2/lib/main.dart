@@ -17,6 +17,8 @@ List<String> tasks = [];
 
 class _MyAppState extends State<MyApp> {
   // This widget is the root of your application.
+  //ListView.builder();
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,94 +36,46 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.amber[600],
           elevation: 10,
         ),
-        body: Column (
-          mainAxisAlignment: MainAxisAlignment.start,
+        body: ListView (
+          //mainAxisAlignment: MainAxisAlignment.start,
           children: [
-                Expanded(
-                  child: Container(
-                    //color: Colors.yellowAccent[400],
-                    padding: const EdgeInsets.all(12.0),
-                    margin: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow[500],
-                      borderRadius: BorderRadius.all(Radius.circular(7)),
-                    ),
-                      child: Text(
-                    "Task1",
-                      style: TextStyle(
-                        fontWeight:FontWeight.bold,
-                        fontSize: 24, // Font size
-                  ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        padding: const EdgeInsets.all(12.0),
+                        margin: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          color: Colors.yellow[500],
+                          borderRadius: BorderRadius.all(Radius.circular(7)),
+                        ),
+                          child: Text(
+                        "Task1",
+                          style: TextStyle(
+                            fontWeight:FontWeight.bold,
+                            fontSize: 24, // Font size
                       ),
-                  ),),
-                Expanded(
-                  child: Container(
-                    //color: Colors.yellowAccent[400],
-                    padding: const EdgeInsets.all(12.0),
-                    margin: const EdgeInsets.all(8),
-                    decoration: BoxDecoration(
-                      color: Colors.yellow[500],
-                      borderRadius: BorderRadius.all(Radius.circular(7)),
-                    ),
-                      child: Text(
-                    "Task in the bottom of the task list",
-                      style: TextStyle(
-                        fontWeight:FontWeight.bold,
-                        fontSize: 24, // Font size
-                  ),
-                      ),
-                  ),),
+                          ),
+                      ),),
+                  ],
+                ),
               ],
         ),
         
 
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.yellow[500],
+        child: Icon(
+          Icons.add,
+          ),
       onPressed: () {
-  showDialog(       //  Open a dialog box 
-    context: context,  // Provide context of the current widget tree
-    builder: (context) {  // 3. Define a widget builder to construct the dialog's content
-      String newTask = '';  // 4. Initialize an empty string to store the new task input
-
-      // Return the dialog box with a title, text input, and action buttons
-      return AlertDialog(
-        title: Text("ENTER NEW TASK"),  // 6. Set the title of the dialog
-
-        content: TextField(
-          onChanged: (value) {  // 7. Capture the text input whenever the user types
-            newTask = value;  // 8. Assign the typed value to `newTask`
-          },
-        ),
-
-        actions: [
-          TextButton(
-            onPressed: () {  // action for the "Cancel" button
-              Navigator.of(context).pop();  // 10. Close the dialog when "Cancel" is pressed
-            },
-            child: Text('Cancel'),  // 11. Label the button as "Cancel"
-          ),
-          TextButton(
-            onPressed: () {  // 12. Define the action for the "Add" button
-              // Logic to add task (e.g., _addTask(newTask)) can be placed here
-
-              Navigator.of(context).pop();  // 13. Close the dialog after adding the task
-            },
-            child: Text('Add'),  // 14. Label the button as "Add"
-          ),
-        ],
-      );
-    },
-  );
-},
-      backgroundColor: Colors.amber[400], // Add an onPressed function here
-      child: Icon(
-                  Icons.add, 
-                  color: Colors.black,
-                ), // The + icon
-      //label: Text(''), // The text next to the icon
-      ),
+        setState(() {
+          tasks.add("Task ${tasks.length + 1}");
+        });
       
-    )
-    );
+},
+    ),),);
   }
 }
 
