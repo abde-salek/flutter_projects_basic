@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, unused_label, avoid_print, unused_local_variable
 
 import 'package:flutter/material.dart';
+// import 'lib/fct/fct.dart';
 
 void main() {
   runApp(const MyApp());
@@ -70,9 +71,7 @@ class _MyAppState extends State<MyApp> {
           Icons.add,
           ),
       onPressed: () {
-        setState(() {
-          tasks.add("Task ${tasks.length + 1}");
-        });
+        //AddTask;
       
 },
     ),),);
