@@ -1,7 +1,8 @@
 // ignore_for_file: prefer_const_constructors, unused_label, avoid_print, unused_local_variable
 
 import 'package:flutter/material.dart';
-// import 'lib/fct/fct.dart';
+// ignore: unused_import
+import 'package:pro_2/fct.dart';
 
 void main() {
   runApp(const MyApp());
@@ -37,9 +38,14 @@ class _MyAppState extends State<MyApp> {
           backgroundColor: Colors.amber[600],
           elevation: 10,
         ),
-        body: ListView (
+        body: if (tasks.isEmpty)
+                Center(child: Text("No Tasks for Today"),)
+              else
+              ListView (
           //mainAxisAlignment: MainAxisAlignment.start,
+        
           children: [
+              
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -52,7 +58,7 @@ class _MyAppState extends State<MyApp> {
                           borderRadius: BorderRadius.all(Radius.circular(7)),
                         ),
                           child: Text(
-                        "Task1",
+                        taskName,
                           style: TextStyle(
                             fontWeight:FontWeight.bold,
                             fontSize: 24, // Font size
@@ -70,10 +76,7 @@ class _MyAppState extends State<MyApp> {
         child: Icon(
           Icons.add,
           ),
-      onPressed: () {
-        //AddTask;
-      
-},
+      onPressed: () {showTask();},
     ),),);
   }
 }
