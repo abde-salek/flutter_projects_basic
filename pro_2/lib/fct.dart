@@ -33,12 +33,17 @@ class TaskListState extends State<TaskList> {
                     labelText: "Task Title",
                     hintText: "Enter your task",
                   ),
-                  value: TaskListState.taskName,
-                ),
-                const Checkbox(
-                  value: completed, onChanged: (value) {
+                  onChanged: (value) {
                     setState(() {
-                      completed = value;
+                      taskName = value;
+                    });
+                  },
+                  
+                ),
+                Checkbox(
+                  value: tempChecked, onChanged: (tempChecked) {
+                    setState(() {
+                      tempChecked != tempChecked;
                     });
                   },)
                 
