@@ -12,12 +12,10 @@ class TaskListState extends State<TaskList> {
 
   static String taskName= "";
   bool completed = false;
-    List<Map<String, dynamic>> tasks = [];
-    List<String> tasksV = [];
+  
   //method of showdialog
   void showTask() {
     bool tempChecked = completed; // Temporary variable for dialog
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -56,12 +54,5 @@ class TaskListState extends State<TaskList> {
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Checkbox(
-          value: completed , onChanged: onChanged)
-      ],
-    );
-  }
+  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
 }
