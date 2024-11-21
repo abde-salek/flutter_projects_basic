@@ -10,6 +10,7 @@ class TaskList extends StatefulWidget {
 
 class TaskListState extends State<TaskList> {
 
+  List<String> tasks = []; // List of tasks
   static String taskName= "";
   bool completed = false;
   
@@ -39,14 +40,33 @@ class TaskListState extends State<TaskList> {
                   
                 ),
                 Checkbox(
-                  value: tempChecked, onChanged: (tempChecked) {
-                    setState(() {
-                      tempChecked != tempChecked;
+                  value: tempChecked,
+                  onChanged: (tempChecked) {
+                    setDialogState(() {
+                        tempChecked != tempChecked;
                     });
                   },)
                 
               ],
             ),
+          actions: [
+              TextButton(
+                onPressed: () {
+                    // Save the task when 'Save' is pressed
+                    if (taskName.isNotEmpty) {
+                      setState(() {
+                        tasks.add(taskName); // Add task to the list
+                      });
+                      Navigator.pop(context); // Close the dialog
+                    }
+                  },
+                  child: const Text("Save"),
+              ),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: const Text('Close'),
+              ),
+          ],
         );
         });        
         
@@ -54,5 +74,7 @@ class TaskListState extends State<TaskList> {
   }
 
   @override
-  dynamic noSuchMethod(Invocation invocation) => super.noSuchMethod(invocation);
+  Widget build(BuildContext context) {
+    return Container(); // Placeholder for demo
+  }
 }
