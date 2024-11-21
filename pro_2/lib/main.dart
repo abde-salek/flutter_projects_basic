@@ -22,7 +22,7 @@ class _MyAppState extends State<MyApp> {
   
   void switching(){
     setState(() {
-      showCenterWidget =!showCenterWidget;
+      showCenterWidget =false;
     });
   }
   
