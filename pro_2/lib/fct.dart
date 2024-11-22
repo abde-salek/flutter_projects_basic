@@ -10,13 +10,13 @@ class TaskList extends StatefulWidget {
 
 class TaskListState extends State<TaskList> {
 
-  List<String> tasks = []; // List of tasks
+  List<String> tasks = [ ]; // List of tasks
   static String taskName= "";
   bool completed = false;
   
   //method of showdialog
   void showTask() {
-    bool tempChecked = completed; // Temporary variable for dialog
+    //bool tempChecked = completed; // Temporary variable for dialog
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -27,6 +27,7 @@ class TaskListState extends State<TaskList> {
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 8,),
                 TextField(
                   decoration: const InputDecoration(
                     labelText: "Task Title",
@@ -39,28 +40,25 @@ class TaskListState extends State<TaskList> {
                   },
                   
                 ),
-                Checkbox(
-                  value: tempChecked,
-                  onChanged: (tempChecked) {
-                    setDialogState(() {
-                        tempChecked != tempChecked;
-                    });
-                  },)
-                
               ],
             ),
           actions: [
-              TextButton(
-                onPressed: () {
-                    // Save the task when 'Save' is pressed
-                    if (taskName.isNotEmpty) {
-                      setState(() {
-                        tasks.add(taskName); // Add task to the list
-                      });
-                      Navigator.pop(context); // Close the dialog
-                    }
-                  },
-                  child: const Text("Save"),
+              Row(
+              crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextButton(
+                    onPressed: () {
+                        // Save the task when 'Save' is pressed
+                        if (taskName.isNotEmpty) {
+                          setState(() {
+                            tasks.add(taskName); // Add task to the list
+                          });
+                          Navigator.pop(context); // Close the dialog
+                        }
+                      },
+                      child: const Text("Save"),
+                  ),
+                ],
               ),
               TextButton(
                 onPressed: () => Navigator.pop(context),
