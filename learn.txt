@@ -146,3 +146,10 @@ action Button that floats on the screen
 
 //STRESSFUL W
 setState((){code}) allows a state change overtime; we can use it inside the onPressed(){..}..
+
+§§ return Row(
+This is used when a Row widget is the return value of a function, method, or builder 
+(e.g., in itemBuilder of a ListView.builder).
+§§ Row(
+This is used when you are instantiating a Row widget 
+but not directly returning it. For instance
