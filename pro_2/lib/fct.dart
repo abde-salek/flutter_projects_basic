@@ -1,3 +1,5 @@
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 
 
@@ -11,9 +13,10 @@ class TaskList extends StatefulWidget {
 
 class TaskListState extends State<TaskList> {
 
-  List<String> tasks = [ ]; // List of tasks
-  String taskName= "TF is wrong";
+   // List of tasks
+  late String taskName = "";
   bool completed = false;
+  List<String> tasks = [];
   
   //method of showdialog
   void showTask() {
@@ -35,11 +38,9 @@ class TaskListState extends State<TaskList> {
                     hintText: "Enter your task",
                   ),
                   onChanged: (value) {
-                    setState(() {
-                      taskName = value;
-                    });
+                    taskName = value;
+                    //index++;
                   },
-                  
                 ),
                 const SizedBox(height: 8, width: 8,),
               ],
@@ -51,11 +52,14 @@ class TaskListState extends State<TaskList> {
                   TextButton(
                     onPressed: () {
                         // Save the task when 'Save' is pressed
-                        if (taskName.isNotEmpty) {
+                        if (taskName.trim().isNotEmpty) { // Trim to avoid spaces-only tasks
                           setState(() {
-                            tasks.add(taskName); // Add task to the list
+                            tasks.add(taskName.trim()); // Add the trimmed task
                           });
-                          Navigator.pop(context); // Close the dialog
+                          taskName = ""; // Reset taskName
+                          Navigator.of(context).pop(); // Close the dialog
+                        } else {
+                          print("Task name is empty. Please enter a valid task.");
                         }
                       },
                     child: const Text("Save", style: TextStyle(color: Colors.green),),
@@ -78,6 +82,7 @@ class TaskListState extends State<TaskList> {
    // Create an instance
    // Call using the instance
   bool showCenterWidget = true;
+  int index= -1;
   // This widget is the root of your application.
   
   @override
@@ -98,10 +103,9 @@ class TaskListState extends State<TaskList> {
       body: showCenterWidget
               ?  const Center(child: Text("No Tasks for Today"),)
               :  ListView.builder(
-          //itemCount: TaskListState.taskName.length,
+          itemCount: tasks.length,
           itemBuilder: (BuildContext context, int index) {  
-            index += 1;
-          Row(
+          return Row(
           mainAxisAlignment: MainAxisAlignment.start,
             children: [
               Expanded(
@@ -112,17 +116,17 @@ class TaskListState extends State<TaskList> {
                     color: Colors.yellow[500],
                     borderRadius: const BorderRadius.all(Radius.circular(7)),
                   ),
-                    child: const Text(
-                      "TF is wrong",
-                    style: TextStyle(
+                    child: Text(
+                      taskName, // Task Name
+                    style: const TextStyle(
                       fontWeight:FontWeight.bold,
                       fontSize: 24, // Font size
                 ),
                     ),
                 ),),
             ],
-          );
-          return null;},
+          ); 
+          },
         ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.yellow[500],
