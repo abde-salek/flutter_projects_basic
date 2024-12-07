@@ -14,7 +14,7 @@ class TaskList extends StatefulWidget {
 class TaskListState extends State<TaskList> {
 
    // List of tasks
-  late String taskName = "";
+  late String? taskName;
   bool completed = false;
   List<String> tasks = [];
   
@@ -39,7 +39,8 @@ class TaskListState extends State<TaskList> {
                   ),
                   onChanged: (value) {
                     taskName = value;
-                    //index++;
+                    if (taskName != null)
+                    {tasks.add(taskName !);}
                   },
                 ),
                 const SizedBox(height: 8, width: 8,),
@@ -52,11 +53,11 @@ class TaskListState extends State<TaskList> {
                   TextButton(
                     onPressed: () {
                         // Save the task when 'Save' is pressed
-                        if (taskName.trim().isNotEmpty) { // Trim to avoid spaces-only tasks
+                        if (taskName?.isNotEmpty ?? false) { // Trim to avoid spaces-only tasks
                           setState(() {
-                            tasks.add(taskName.trim()); // Add the trimmed task
+                            tasks.add(taskName!); // Add the trimmed task
                           });
-                          taskName = ""; // Reset taskName
+                           // Reset taskName
                           Navigator.of(context).pop(); // Close the dialog
                         } else {
                           print("Task name is empty. Please enter a valid task.");
@@ -82,9 +83,9 @@ class TaskListState extends State<TaskList> {
    // Create an instance
    // Call using the instance
   bool showCenterWidget = true;
-  int index= -1;
+  int index= 0;
   // This widget is the root of your application.
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,8 +104,8 @@ class TaskListState extends State<TaskList> {
       body: showCenterWidget
               ?  const Center(child: Text("No Tasks for Today"),)
               :  ListView.builder(
-          itemCount: tasks.length,
-          itemBuilder: (BuildContext context, int index) {  
+          itemCount: index,
+          itemBuilder: (BuildContext context, int index ) {  
           return Row(
           mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -117,27 +118,30 @@ class TaskListState extends State<TaskList> {
                     borderRadius: const BorderRadius.all(Radius.circular(7)),
                   ),
                     child: Text(
-                      taskName, // Task Name
+                    tasks[index], // Task Name
                     style: const TextStyle(
                       fontWeight:FontWeight.bold,
                       fontSize: 24, // Font size
-                ),
+                    ),
                     ),
                 ),),
             ],
           ); 
-          },
+          }
+        
         ),
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.yellow[500],
         onPressed: () {
+          index = index + 1;
           showTask();
             if (showCenterWidget) { 
             showCenterWidget = false; // Switch value
-            }},
-          child: const Icon(
+            }
+        },
+        child: const Icon(
             Icons.add,
-            ),
+        ),
     ),
     ) ; // Placeholder for demo
   }
