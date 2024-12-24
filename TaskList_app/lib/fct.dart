@@ -1,4 +1,4 @@
-// ignore_for_file: unused_local_variable
+// ignore_for_file: unused_local_variable, avoid_print
 
 
 import 'package:flutter/material.dart';
@@ -14,31 +14,11 @@ class TaskList extends StatefulWidget {
 
 class TaskListState extends State<TaskList> {
    // List of tasks
-  late String? taskName;
   bool completed = false;
   List<String> tasks = [];
-  String tempTask= "";
   TextEditingController taskController = TextEditingController();
-
-  void addTask() {
-    if (taskController.text.trim().isNotEmpty) {
-      setState(() {
-        tasks.add(taskController.text.trim());
-        taskController.clear();
-        taskName = "";
-      });
-       // Close the dialog
-    } else {
-      print("Task name is empty. Please enter a valid task.");
-    }
-  }
-  // String taskPrint(){ NOT IDEAL § !
-  //   for (int i = 0; i <= taskName!.length; i++){
-  //     tempTask= tempTask + tasks[i];
-  //   }
-  //   i= i + taskName!.length;
-  // return tempTask;
   // }
+  // String taskPrint(){ NOT IDEAL § !
   //method of showdialog
   void showTask(){
     //bool tempChecked = completed; // Temporary variable for dialog
@@ -59,10 +39,9 @@ class TaskListState extends State<TaskList> {
                     hintText: "Enter your task",
                   ),
                   onChanged: (value) {
-                    taskName = value; 
-                    addTask();
-                    // if (taskName != null)
-                    //     {}
+                    taskController.text = value; 
+                    //addTask(); already done with the save button
+                    
                   },
                 ),
                 const SizedBox(height: 8, width: 8,),
@@ -75,9 +54,10 @@ class TaskListState extends State<TaskList> {
                   TextButton(
                     onPressed: () {
                         // Save the task when 'Save' is pressed
-                        if (taskName?.trim().isNotEmpty ?? false) { // Trim to avoid spaces-only tasks
+                        if (taskController.text.trim().isNotEmpty) { // Trim to avoid spaces-only tasks
                           setState(() {
-                            tasks.add(taskName!.trim());
+                            tasks.add(taskController.text.trim());
+                            taskController.clear();
                           });
                           Navigator.of(context).pop(); // Close the dialog
                         } else {
@@ -100,13 +80,7 @@ class TaskListState extends State<TaskList> {
       }
     );
   }
-  
-   // Create an instance
-   // Call using the instance
   bool showCenterWidget = true;
-
-  // This widget is the root of your application.
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
