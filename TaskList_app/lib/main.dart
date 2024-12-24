@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, unused_label, avoid_print, unused_local_variable, non_constant_identifier_names
-
 import 'package:flutter/material.dart';
 import 'package:pro_2/fct.dart';
 // ignore: unused_import
@@ -23,7 +21,7 @@ class _MyAppState extends State<MyApp> {
   //ListView.builder();
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       title: 'Flutter Demo',
       home:  TaskList(),
       
