@@ -7,17 +7,16 @@ import 'package:flutter/material.dart';
 class TaskList extends StatefulWidget {
   const TaskList({super.key});
 
-  @override
   // ignore: library_private_types_in_public_api
   TaskListState createState() => TaskListState();
 }
 
 class TaskListState extends State<TaskList> {
    // List of tasks
-  bool completed = false;
+  bool isCompleted = false;
   List<String> tasks = [];
   TextEditingController taskController = TextEditingController();
-  // }
+  
   // String taskPrint(){ NOT IDEAL § !
   //method of showdialog
   void showTask(){
@@ -75,12 +74,12 @@ class TaskListState extends State<TaskList> {
               ),
             ],
         );
-        });        
-        
-      }
-    );
+        });},);
   }
   bool showCenterWidget = true;
+  
+  // tasks is initialized but arknow
+  List<bool> taskCompletionStatus = List<bool>.filled(tasks.length, false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -112,14 +111,25 @@ class TaskListState extends State<TaskList> {
                     color: Colors.yellow[500],
                     borderRadius: const BorderRadius.all(Radius.circular(7)),
                   ),
-                  child: Text(
+                  child: Row(
+                  children: [
+                  Checkbox(
+                    value: taskCompletionStatus[index],
+                    onChanged: (bool? value) {
+                      setState(() {
+                        taskCompletionStatus[index] = value ?? false;
+                      });
+                    },),
+                  const SizedBox(width: 7,),
+                  Expanded(
+                    child: Text(
                     tasks[index],
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
                     ),
-                  ),
+                  ),),],),
                 ),),
             ]
           );}
