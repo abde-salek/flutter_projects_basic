@@ -5,16 +5,17 @@ import 'package:flutter/material.dart';
 
 
 class TaskList extends StatefulWidget {
-  const TaskList({super.key});
+  const TaskList({super.key, required});
 
   // ignore: library_private_types_in_public_api
+  @override
   TaskListState createState() => TaskListState();
 }
 
 class TaskListState extends State<TaskList> {
    // List of tasks
-  bool isCompleted = false;
-  List<String> tasks = [];
+  //bool isCompleted = false;
+  late List<String> tasks = [];
   TextEditingController taskController = TextEditingController();
   
   // String taskPrint(){ NOT IDEAL § !
@@ -57,6 +58,7 @@ class TaskListState extends State<TaskList> {
                           setState(() {
                             tasks.add(taskController.text.trim());
                             taskController.clear();
+                            index += 1;
                           });
                           Navigator.of(context).pop(); // Close the dialog
                         } else {
@@ -77,9 +79,9 @@ class TaskListState extends State<TaskList> {
         });},);
   }
   bool showCenterWidget = true;
-  
-  // tasks is initialized but arknow
-  List<bool> taskCompletionStatus = List<bool>.filled(tasks.length, false);
+  late int index = 0;
+  // tasks is initialized but arnow
+  late List<bool> taskCompletionStatus = List<bool>.filled(tasks.length, false);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -105,8 +107,8 @@ class TaskListState extends State<TaskList> {
             children: [
               Expanded(
                 child: Container(
-                  padding: EdgeInsets.all(12.0),
-                  margin: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(12.0),
+                  margin: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: Colors.yellow[500],
                     borderRadius: const BorderRadius.all(Radius.circular(7)),
@@ -117,7 +119,7 @@ class TaskListState extends State<TaskList> {
                     value: taskCompletionStatus[index],
                     onChanged: (bool? value) {
                       setState(() {
-                        taskCompletionStatus[index] = value ?? false;
+                        taskCompletionStatus[index] = value!;
                       });
                     },),
                   const SizedBox(width: 7,),
