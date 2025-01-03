@@ -1,8 +1,5 @@
 // ignore_for_file: unused_local_variable, avoid_print
-
-
 import 'package:flutter/material.dart';
-
 
 class TaskList extends StatefulWidget {
   const TaskList({super.key, required});
@@ -58,7 +55,6 @@ class TaskListState extends State<TaskList> {
                           setState(() {
                             tasks.add(taskController.text.trim());
                             taskController.clear();
-                            index += 1;
                           });
                           Navigator.of(context).pop(); // Close the dialog
                         } else {
@@ -79,7 +75,7 @@ class TaskListState extends State<TaskList> {
         });},);
   }
   bool showCenterWidget = true;
-  late int index = 0;
+  late int i = 0;
   // tasks is initialized but arnow
   late List<bool> taskCompletionStatus = List<bool>.filled(tasks.length, false);
   @override
@@ -101,7 +97,7 @@ class TaskListState extends State<TaskList> {
               ?  const Center(child: Text("No Tasks for Today"),)
               :  ListView.builder(
           itemCount: tasks.length,
-          itemBuilder: (context, index) {  
+          itemBuilder: (context, i) {  
           return Row(
           mainAxisAlignment: MainAxisAlignment.start,
             children: [
@@ -116,16 +112,16 @@ class TaskListState extends State<TaskList> {
                   child: Row(
                   children: [
                   Checkbox(
-                    value: taskCompletionStatus[index],
+                    value: taskCompletionStatus[i],
                     onChanged: (bool? value) {
                       setState(() {
-                        taskCompletionStatus[index] = value!;
+                        taskCompletionStatus[i] = value!;
                       });
                     },),
                   const SizedBox(width: 7,),
                   Expanded(
                     child: Text(
-                    tasks[index],
+                    tasks[i],
                     style: const TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
