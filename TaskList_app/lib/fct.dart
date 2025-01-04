@@ -13,8 +13,9 @@ class TaskListState extends State<TaskList> {
    // List of tasks
   //bool isCompleted = false;
   late List<String> tasks = [];
-  TextEditingController taskController = TextEditingController();
-  
+  final taskController = TextEditingController();
+  Function (bool?)? onChanged;
+
   // String taskPrint(){ NOT IDEAL § !
   //method of showdialog
   void showTask(){
@@ -38,7 +39,6 @@ class TaskListState extends State<TaskList> {
                   onChanged: (value) {
                     taskController.text = value; 
                     //addTask(); already done with the save button
-                    
                   },
                 ),
                 const SizedBox(height: 8, width: 8,),
@@ -55,6 +55,7 @@ class TaskListState extends State<TaskList> {
                           setState(() {
                             tasks.add(taskController.text.trim());
                             taskController.clear();
+                            taskCompletionStatus.add(false);
                           });
                           Navigator.of(context).pop(); // Close the dialog
                         } else {
@@ -75,9 +76,15 @@ class TaskListState extends State<TaskList> {
         });},);
   }
   bool showCenterWidget = true;
-  late int i = 0;
+  int i = 0;
   // tasks is initialized but arnow
-  late List<bool> taskCompletionStatus = List<bool>.filled(tasks.length, false);
+  List<bool> taskCompletionStatus= [];
+  
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -115,17 +122,20 @@ class TaskListState extends State<TaskList> {
                     value: taskCompletionStatus[i],
                     onChanged: (bool? value) {
                       setState(() {
-                        taskCompletionStatus[i] = value!;
+                        taskCompletionStatus[i] = !taskCompletionStatus[i];
                       });
                     },),
                   const SizedBox(width: 7,),
                   Expanded(
                     child: Text(
                     tasks[i],
-                    style: const TextStyle(
+                    style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w500,
                       color: Colors.black,
+                      decoration: taskCompletionStatus[i]
+                      ? TextDecoration.lineThrough
+                      : TextDecoration.none,
                     ),
                   ),),],),
                 ),),
